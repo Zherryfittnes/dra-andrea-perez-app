@@ -1,0 +1,18 @@
+# Sistema y editores
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Dependencias y artefactos
+node_modules/
+.wrangler/
+.dev.vars
+dist/
+
+# Secretos: nunca se suben
+.env
+.env.*
+*.pem
+*.key

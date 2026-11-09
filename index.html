@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dra. Andrea Pérez | Cirujana dentista en Chihuahua</title>
+<meta name="description" content="Dra. Andrea Pérez, cirujana dentista en Chihuahua. Agenda tu cita por WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Quicksand:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brand: #7A2A4F;
+    --brand-dark: #5e1f3c;
+    --on-brand: #ffffff;
+    --bg: #FDFCF7;
+    --card: #ffffff;
+    --text: #2A1320;
+    --muted: #6b5a64;
+    --line: #eadff2;
+    --hero-a: #EBDDF3;
+    --hero-b: #FDFCF7;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --brand: #C9A9DB;
+      --brand-dark: #E4CBF5;
+      --on-brand: #2A1320;
+      --bg: #1a0d14;
+      --card: #261520;
+      --text: #f4ecf6;
+      --muted: #b9a7b5;
+      --line: #3a2833;
+      --hero-a: #2c1a2a;
+      --hero-b: #1f1220;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+  header {
+    position: sticky; top: 0; z-index: 10;
+    background: var(--card);
+    border-bottom: 1px solid var(--line);
+  }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+  .logo { color: var(--text); text-decoration: none; display: block; }
+  .logo svg { display: block; height: 46px; width: auto; }
+  @media (max-width: 480px) { .logo svg { height: 36px; } }
+  nav a { margin-left: 18px; color: var(--text); text-decoration: none; font-size: 15px; }
+  nav a:hover { color: var(--brand); }
+  .btn {
+    display: inline-block; border: 0; cursor: pointer;
+    background: var(--brand); color: var(--on-brand);
+    padding: 12px 22px; border-radius: 10px;
+    font: inherit; font-weight: 600; text-decoration: none;
+  }
+  .btn:hover { background: var(--brand-dark); }
+  .btn.ghost { background: transparent; color: var(--brand); border: 1.5px solid var(--brand); }
+  .hero { padding: 64px 0 48px; background: linear-gradient(135deg, var(--hero-a), var(--hero-b)); }
+  .hero h1 { font-size: clamp(28px, 5vw, 44px); line-height: 1.15; margin: 0 0 12px; }
+  .hero p { font-size: 18px; color: var(--muted); max-width: 560px; }
+  .hero .actions { margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap; }
+  section { padding: 44px 0; }
+  h2 { font-size: 26px; margin: 0 0 20px; }
+  .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
+  .card h3 { margin: 0 0 6px; font-size: 17px; color: var(--brand); }
+  .card p { margin: 0; color: var(--muted); font-size: 15px; }
+  .about { display: grid; gap: 24px; grid-template-columns: 1fr; }
+  @media (min-width: 720px) { .about { grid-template-columns: 1fr 1fr; } }
+  .info dt { font-weight: 600; margin-top: 12px; }
+  .info dd { margin: 0; color: var(--muted); }
+  .info dd a { color: var(--brand); text-decoration: none; }
+  .info dd a:hover { text-decoration: underline; }
+  form { display: grid; gap: 14px; max-width: 520px; }
+  label { font-weight: 600; font-size: 14px; display: grid; gap: 6px; }
+  input, select, textarea {
+    font: inherit; padding: 11px 12px; border-radius: 10px;
+    border: 1px solid var(--line); background: var(--card); color: var(--text);
+  }
+  input:focus, select:focus, textarea:focus { outline: 2px solid var(--brand); outline-offset: 1px; }
+  .check { display: flex; gap: 10px; align-items: flex-start; font-weight: 400; font-size: 14px; }
+  .check input { margin-top: 4px; }
+  .note { font-size: 13px; color: var(--muted); }
+  footer { border-top: 1px solid var(--line); padding: 28px 0 40px; margin-top: 24px; color: var(--muted); font-size: 14px; }
+  .wa-float {
+    position: fixed; right: 16px; bottom: 16px; z-index: 20;
+    background: #25d366; color: #052b14; font-weight: 700;
+    padding: 12px 18px; border-radius: 999px; text-decoration: none;
+    box-shadow: 0 4px 14px rgba(0,0,0,.25);
+  }
+  .bot-btn {
+    position: fixed; left: 16px; bottom: 16px; z-index: 20;
+    background: var(--brand); color: var(--on-brand); border: 0; cursor: pointer;
+    padding: 12px 18px; border-radius: 999px; font: inherit; font-weight: 600;
+    box-shadow: 0 4px 14px rgba(0,0,0,.25);
+  }
+  .bot {
+    position: fixed; left: 16px; bottom: 72px; z-index: 30;
+    width: min(340px, calc(100vw - 32px)); height: min(480px, 70vh); padding: 0;
+    background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+    display: flex; flex-direction: column; overflow: hidden;
+    box-shadow: 0 12px 32px rgba(0,0,0,.3);
+  }
+  .bot[hidden] { display: none; }
+  .bot-top { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; background: var(--brand); color: var(--on-brand); font-weight: 600; font-size: 15px; }
+  .bot-top button { background: none; border: 0; color: inherit; font-size: 22px; line-height: 1; cursor: pointer; }
+  .bot-log { flex: 1; overflow: auto; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+  .msg { max-width: 86%; padding: 9px 12px; border-radius: 14px; font-size: 14.5px; white-space: pre-line; }
+  .msg.asist { background: var(--hero-a); color: var(--text); align-self: flex-start; border-bottom-left-radius: 4px; }
+  .msg.yo { background: var(--brand); color: var(--on-brand); align-self: flex-end; border-bottom-right-radius: 4px; }
+  .bot-opts { padding: 10px 12px 6px; display: flex; flex-wrap: wrap; gap: 8px; border-top: 1px solid var(--line); max-height: 44%; overflow: auto; }
+  .bot-opts button, .bot-opts a { font: inherit; font-size: 13.5px; padding: 7px 12px; border-radius: 999px; border: 1.5px solid var(--brand); background: transparent; color: var(--brand); cursor: pointer; text-decoration: none; }
+  .bot-opts a.cta { background: var(--brand); color: var(--on-brand); }
+  .bot-nota { font-size: 11.5px; color: var(--muted); padding: 0 14px 10px; }
+  #aviso { display: none; }
+  #aviso:target { display: block; }
+  @media (max-width: 560px) { nav a { margin-left: 12px; font-size: 14px; } }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="lgI" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E6D5F2"/><stop offset="1" stop-color="#CDB2E4"/>
+    </linearGradient>
+    <linearGradient id="lgD" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#CBAAE4"/><stop offset="1" stop-color="#A982CE"/>
+    </linearGradient>
+    <symbol id="tooth" viewBox="48 12 358 345">
+      <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="5.5">
+        <g transform="translate(150 92) scale(2.4)">
+          <path stroke="url(#lgD)" d="M50 12C42 3 20 2 12 18C4 34 12 48 16 60C20 72 20 90 28 97C36 103 40 90 43 76C45 66 47 62 50 62C53 62 55 66 57 76C60 90 64 103 72 97C80 90 80 72 84 60C88 48 96 34 88 18C80 2 58 3 50 12Z"/>
+        </g>
+        <g transform="translate(28 100) scale(2.4)">
+          <path stroke="url(#lgI)" d="M50 12C42 3 20 2 12 18C4 34 12 48 16 60C20 72 20 90 28 97C36 103 40 90 43 76C45 66 47 62 50 62C53 62 55 66 57 76C60 90 64 103 72 97C80 90 80 72 84 60C88 48 96 34 88 18C80 2 58 3 50 12Z"/>
+        </g>
+      </g>
+      <text x="216" y="254" text-anchor="middle" font-family="Allura, 'Segoe Script', cursive" font-size="122" fill="#C2A4E0" stroke="#C2A4E0" stroke-width=".3">AP</text>
+      <g fill="#CDB2E4">
+        <path transform="translate(352 46) scale(2.6)" d="M0-8 1.9-1.9 8 0 1.9 1.9 0 8-1.9 1.9-8 0-1.9-1.9Z"/>
+        <path transform="translate(392 96) scale(1.4)" d="M0-8 1.9-1.9 8 0 1.9 1.9 0 8-1.9 1.9-8 0-1.9-1.9Z"/>
+        <path transform="translate(318 24) scale(1.1)" d="M0-8 1.9-1.9 8 0 1.9 1.9 0 8-1.9 1.9-8 0-1.9-1.9Z"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="#inicio" id="logo" aria-label="Dra. Andrea Pérez, odontología integral">
+      <svg viewBox="0 0 720 170" role="img">
+        <use href="#tooth" x="0" y="6" width="170" height="164"/>
+        <text x="186" y="92" font-family="Allura, 'Segoe Script', cursive" font-size="74" fill="currentColor">Dra. Andrea Pérez</text>
+        <text x="330" y="136" font-family="Quicksand, 'Segoe UI', sans-serif" font-weight="500" font-size="30" fill="currentColor" opacity=".8">Odontología integral</text>
+      </svg>
+    </a>
+    <nav>
+      <a href="#servicios">Servicios</a>
+      <a href="#doctor">Dentista</a>
+      <a href="#cita">Agendar</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="inicio">
+    <div class="wrap">
+      <h1 id="titulo"></h1>
+      <p id="subtitulo"></p>
+      <div class="actions">
+        <a class="btn" href="#cita">Agendar cita</a>
+        <a class="btn ghost" id="btn-wa" href="#">Escribir por WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicios">
+    <div class="wrap">
+      <h2>Servicios</h2>
+      <div class="grid" id="lista-servicios"></div>
+    </div>
+  </section>
+
+  <section id="doctor">
+    <div class="wrap about">
+      <div>
+        <h2>Conoce a tu dentista</h2>
+        <p id="bio"></p>
+        <p class="note" id="cedula"></p>
+      </div>
+      <dl class="info card">
+        <dt>Dirección</dt><dd id="direccion"></dd>
+        <dt>Horario</dt><dd id="horario"></dd>
+        <dt>WhatsApp</dt><dd><a id="telefono" target="_blank" rel="noopener"></a></dd>
+        <dt>Correo</dt><dd><a id="correo"></a></dd>
+        <dt>Redes</dt><dd><a id="instagram" target="_blank" rel="noopener">Instagram</a> · <a id="facebook" target="_blank" rel="noopener">Facebook</a></dd>
+      </dl>
+    </div>
+  </section>
+
+  <section id="cita">
+    <div class="wrap">
+      <h2>Agenda tu cita</h2>
+      <form id="form-cita">
+        <label>Nombre
+          <input name="nombre" required autocomplete="name">
+        </label>
+        <label>Teléfono
+          <input name="telefono" type="tel" required autocomplete="tel">
+        </label>
+        <label>Motivo de consulta
+          <select name="motivo" id="motivo" required></select>
+        </label>
+        <label>Fecha preferida
+          <input name="fecha" type="date">
+        </label>
+        <label class="check">
+          <input type="checkbox" name="aviso" required>
+          <span>He leído el <a href="#aviso">aviso de privacidad</a> y acepto el uso de mis datos para gestionar mi cita.</span>
+        </label>
+        <p class="note">Guardamos tu nombre, teléfono y el servicio que elegiste para darle seguimiento a tu cita. No escribas aquí detalles médicos ni datos de tu expediente. La doctora los revisará en consulta.</p>
+        <button class="btn" type="submit">Enviar por WhatsApp</button>
+      </form>
+    </div>
+  </section>
+
+  <section id="aviso">
+    <div class="wrap">
+      <h2>Aviso de privacidad (borrador)</h2>
+      <p class="note">
+        [EDITAR] Este texto es una plantilla. Antes de publicar, el responsable del consultorio debe revisarlo con un asesor legal conforme a la LFPDPPP. Debe indicar quién es el responsable, qué datos se recaban, para qué se usan, cómo se ejercen los derechos ARCO y cómo se informan los cambios.
+      </p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div id="pie"></div>
+    <p class="note">Los resultados varían de un paciente a otro. La información de este sitio no sustituye una consulta médica.</p>
+  </div>
+</footer>
+
+<button class="bot-btn" id="bot-btn" type="button" aria-expanded="false" aria-controls="bot">Chatea con nosotros</button>
+<section class="bot" id="bot" hidden aria-label="Asistente virtual">
+  <div class="bot-top"><span>Asistente de la Dra. Andrea</span><button id="bot-cerrar" type="button" aria-label="Cerrar chat">×</button></div>
+  <div class="bot-log" id="bot-log" aria-live="polite"></div>
+  <div class="bot-opts" id="bot-opts"></div>
+  <p class="bot-nota">Asistente automático. No compartas datos médicos por aquí.</p>
+</section>
+
+<a class="wa-float" id="wa-float" href="#">WhatsApp</a>
+
+<script src="config.js"></script>
+<script>
+  // Edita solo este bloque para cada cliente.
+  const CONFIG = {
+    nombre: "Dra. Andrea Pérez",
+    especialidad: "Odontología integral",
+    ciudad: "Chihuahua, Chih.",
+    whatsapp: "526141192994", // lada país + número, sin signos
+    telefono: "614 119 2994",
+    correo: "Dra.Andrea.Pere@gmail.com",
+    instagram: "https://www.instagram.com/dra.andreaperez.g",
+    facebook: "https://www.facebook.com/andrea.perez.846436",
+    direccion: "Col. Panamericana, Chihuahua, Chih.",
+    horario: "Consulta los horarios disponibles por WhatsApp.",
+    cedula: "", // pendiente: se agrega al entregar el proyecto; si está vacía, no se muestra
+    bio: "Atención dental para niños y adultos en Chihuahua. Escríbenos por WhatsApp y agenda tu cita.",
+    servicios: [
+      ["Limpieza", "Revisión y limpieza dental profesional."],
+      ["Resinas", "Reparación de caries y piezas dañadas."],
+      ["Blanqueamiento", "Tratamiento estético para aclarar el tono de tus dientes."],
+      ["Extracciones", "Retiro de piezas dentales."],
+      ["Prótesis fijas y removibles", "Reemplazo de piezas faltantes."],
+      ["Atención de urgencia", "Si tienes dolor o una emergencia, escríbenos por WhatsApp. Tiene un costo mayor que la consulta regular."]
+    ]
+  };
+
+  const $ = (id) => document.getElementById(id);
+  const waBase = "https://wa.me/" + CONFIG.whatsapp;
+
+  document.title = CONFIG.nombre + " | " + CONFIG.especialidad + " en " + CONFIG.ciudad;
+  $("titulo").textContent = CONFIG.nombre + ", " + CONFIG.especialidad.toLowerCase() + " en " + CONFIG.ciudad;
+  $("subtitulo").textContent = "Atención dental para niños y adultos. Agenda tu cita en minutos.";
+  $("bio").textContent = CONFIG.bio;
+  if (CONFIG.cedula) $("cedula").textContent = CONFIG.cedula; else $("cedula").hidden = true;
+  $("direccion").textContent = CONFIG.direccion;
+  $("horario").textContent = CONFIG.horario;
+  $("telefono").textContent = "+52 " + CONFIG.telefono;
+  $("telefono").href = waBase;
+  $("correo").textContent = CONFIG.correo;
+  $("correo").href = "mailto:" + CONFIG.correo;
+  $("instagram").href = CONFIG.instagram;
+  $("facebook").href = CONFIG.facebook;
+  $("pie").textContent = CONFIG.nombre + " · " + CONFIG.direccion;
+
+  const saludo = encodeURIComponent("Hola, quiero información para agendar una cita.");
+  $("btn-wa").href = waBase + "?text=" + saludo;
+  $("wa-float").href = waBase + "?text=" + saludo;
+
+  CONFIG.servicios.forEach(([titulo, texto]) => {
+    const card = document.createElement("div");
+    card.className = "card";
+    const h = document.createElement("h3");
+    h.textContent = titulo;
+    const p = document.createElement("p");
+    p.textContent = texto;
+    card.append(h, p);
+    $("lista-servicios").appendChild(card);
+
+    const opt = document.createElement("option");
+    opt.value = titulo;
+    opt.textContent = titulo;
+    $("motivo").appendChild(opt);
+  });
+
+  // Guarda la solicitud en Supabase para el seguimiento. Si no hay base conectada, no hace nada.
+  // Solo se envían nombre, teléfono, servicio y fecha preferida (nunca datos clínicos).
+  function guardarSolicitud(d) {
+    const c = window.APP_CONFIG || {};
+    if (!c.SUPABASE_URL || !c.SUPABASE_ANON_KEY) return;
+    fetch(c.SUPABASE_URL + "/rest/v1/solicitudes", {
+      method: "POST",
+      keepalive: true,
+      headers: Object.assign({
+        apikey: c.SUPABASE_ANON_KEY,
+        "Content-Type": "application/json",
+        Prefer: "return=minimal"
+      }, c.SUPABASE_ANON_KEY.startsWith("eyJ") ? { Authorization: "Bearer " + c.SUPABASE_ANON_KEY } : {}),
+      body: JSON.stringify({
+        nombre: String(d.get("nombre")).trim(),
+        telefono: String(d.get("telefono")).trim(),
+        servicio: d.get("motivo"),
+        fecha_preferida: d.get("fecha") || null,
+        consentimiento: true
+      })
+    }).catch(() => { /* el WhatsApp se abre de todos modos */ });
+  }
+
+  $("form-cita").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const d = new FormData(e.target);
+    guardarSolicitud(d);
+    const lineas = [
+      "Hola, quiero agendar una cita.",
+      "Nombre: " + d.get("nombre"),
+      "Teléfono: " + d.get("telefono"),
+      "Motivo: " + d.get("motivo"),
+      d.get("fecha") ? "Fecha preferida: " + d.get("fecha") : ""
+    ].filter(Boolean);
+    window.open(waBase + "?text=" + encodeURIComponent(lineas.join("\n")), "_blank", "noopener");
+  });
+
+  // Chatbot de preguntas frecuentes. Solo botones: no recibe texto libre,
+  // así no recoge datos de salud. Cada nodo: texto, opciones [etiqueta, nodo] y enlace opcional.
+  (function () {
+    const wa = (txt) => waBase + "?text=" + encodeURIComponent(txt);
+    const nombres = CONFIG.servicios.map(([titulo]) => titulo);
+    const menu = [["Menú principal", "inicio"]];
+
+    const NODOS = {
+      inicio: {
+        texto: "¡Hola! Soy el asistente virtual de la " + CONFIG.nombre + ". ¿En qué te puedo ayudar?",
+        opciones: [
+          ["Servicios", "servicios"], ["Agendar cita", "agendar"], ["Urgencias", "urgencia"],
+          ["Ubicación y horarios", "ubicacion"], ["Precios", "precios"], ["¿Atienden niños?", "ninos"],
+          ["Hablar con la doctora", "humano"]
+        ]
+      },
+      servicios: {
+        texto: () => "Estos son nuestros servicios:\n" + nombres.map((n) => "• " + n).join("\n"),
+        opciones: [["Agendar cita", "agendar"]]
+      },
+      agendar: {
+        texto: "¿Qué servicio te interesa?",
+        opciones: nombres.map((n) => [n, "cita:" + n])
+      },
+      urgencia: {
+        texto: "Si tienes dolor fuerte, inflamación o un golpe en la boca, escríbenos por WhatsApp lo antes posible. La atención de urgencia tiene un costo mayor que la consulta regular.\n\nSi es una emergencia grave (dificultad para respirar o sangrado que no para), llama al 911 o acude a urgencias de un hospital.",
+        enlace: { etiqueta: "Escribir por urgencia", url: wa("Hola, tengo una urgencia dental.") }
+      },
+      ubicacion: {
+        texto: () => "Estamos en " + CONFIG.direccion + " La dirección completa te la compartimos al confirmar tu cita.\n\nHorarios: " + CONFIG.horario,
+        enlace: { etiqueta: "Preguntar horarios", url: wa("Hola, quisiera saber los horarios disponibles.") }
+      },
+      precios: {
+        texto: "El costo depende de cada caso y lo confirma la doctora. Escríbenos por WhatsApp y te orientamos.",
+        enlace: { etiqueta: "Preguntar por precios", url: wa("Hola, quisiera información de precios.") }
+      },
+      ninos: {
+        texto: "Sí, atendemos niños y adultos.",
+        opciones: [["Agendar cita", "agendar"]]
+      },
+      humano: {
+        texto: () => "Con gusto te atiende la doctora por WhatsApp. También puedes escribir a " + CONFIG.correo + ".",
+        enlace: { etiqueta: "Abrir WhatsApp", url: wa("Hola, quisiera hablar con la doctora.") }
+      }
+    };
+    nombres.forEach((n) => {
+      NODOS["cita:" + n] = {
+        texto: "Perfecto. Para agendar " + n.toLowerCase() + ", continúa en WhatsApp y ahí te confirmamos fecha y hora.",
+        enlace: { etiqueta: "Continuar en WhatsApp", url: wa("Hola, quiero agendar una cita de " + n.toLowerCase() + ".") }
+      };
+    });
+
+    const log = $("bot-log"), opts = $("bot-opts"), panel = $("bot"), abrir = $("bot-btn");
+
+    function burbuja(texto, quien) {
+      const d = document.createElement("div");
+      d.className = "msg " + quien;
+      d.textContent = texto;
+      log.appendChild(d);
+      log.scrollTop = log.scrollHeight;
+    }
+
+    function ir(clave, etiqueta) {
+      if (etiqueta) burbuja(etiqueta, "yo");
+      const n = NODOS[clave];
+      burbuja(typeof n.texto === "function" ? n.texto() : n.texto, "asist");
+      opts.replaceChildren();
+      if (n.enlace) {
+        const a = document.createElement("a");
+        a.className = "cta";
+        a.href = n.enlace.url;
+        a.target = "_blank";
+        a.rel = "noopener";
+        a.textContent = n.enlace.etiqueta;
+        opts.appendChild(a);
+      }
+      (n.opciones || []).concat(clave === "inicio" ? [] : menu).forEach(([et, sig]) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.textContent = et;
+        b.addEventListener("click", () => ir(sig, et));
+        opts.appendChild(b);
+      });
+    }
+
+    function alternar(mostrar) {
+      panel.hidden = !mostrar;
+      abrir.setAttribute("aria-expanded", String(mostrar));
+      if (mostrar && !log.children.length) ir("inicio");
+    }
+    abrir.addEventListener("click", () => alternar(panel.hidden));
+    $("bot-cerrar").addEventListener("click", () => alternar(false));
+  })();
+</script>
+</body>
+</html>

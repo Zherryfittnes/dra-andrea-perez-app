@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#7A2A4F">
+<meta name="robots" content="noindex">
+<title>Citas | Dra. Andrea Pérez</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<style>
+  :root {
+    --brand: #7A2A4F;
+    --brand-dark: #5e1f3c;
+    --on-brand: #ffffff;
+    --bg: #FDFCF7;
+    --card: #ffffff;
+    --text: #2A1320;
+    --muted: #6b5a64;
+    --line: #eadff2;
+    --soft: #EBDDF3;
+    --ok: #1f7a4d;
+    --warn: #9a5b00;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --brand: #C9A9DB;
+      --brand-dark: #E4CBF5;
+      --on-brand: #2A1320;
+      --bg: #1a0d14;
+      --card: #261520;
+      --text: #f4ecf6;
+      --muted: #b9a7b5;
+      --line: #3a2833;
+      --soft: #3a2236;
+      --ok: #6fd4a0;
+      --warn: #f0b95a;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; line-height: 1.5; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+  .top { position: sticky; top: 0; z-index: 5; background: var(--brand); color: var(--on-brand); padding: env(safe-area-inset-top) 0 0; }
+  .top .wrap { display: flex; align-items: center; justify-content: space-between; height: 56px; gap: 8px; }
+  .top h1 { font-size: 17px; margin: 0; font-weight: 600; }
+  .top button { background: transparent; color: inherit; border: 1.5px solid currentColor; border-radius: 8px; padding: 6px 10px; font: inherit; font-size: 13px; cursor: pointer; }
+  main { padding: 18px 0 60px; }
+  .btn { display: inline-block; border: 0; cursor: pointer; background: var(--brand); color: var(--on-brand); padding: 11px 18px; border-radius: 10px; font: inherit; font-weight: 600; text-decoration: none; }
+  .btn.ghost { background: transparent; color: var(--brand); border: 1.5px solid var(--brand); }
+  .btn.sm { padding: 7px 12px; font-size: 14px; }
+  .panelbox { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
+  label { display: grid; gap: 6px; font-weight: 600; font-size: 14px; }
+  input, select, textarea { font: inherit; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); color: var(--text); width: 100%; }
+  input:focus, select:focus, textarea:focus { outline: 2px solid var(--brand); outline-offset: 1px; }
+  .note { font-size: 13px; color: var(--muted); }
+  .msg { margin-top: 12px; font-size: 14px; }
+  .tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+  .tabs button { font: inherit; font-size: 14px; padding: 7px 14px; border-radius: 999px; border: 1.5px solid var(--brand); background: transparent; color: var(--brand); cursor: pointer; }
+  .tabs button[aria-pressed="true"] { background: var(--brand); color: var(--on-brand); }
+  .lista { display: grid; gap: 12px; }
+  .item { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px; display: grid; gap: 10px; }
+  .item header { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+  .item h3 { margin: 0; font-size: 17px; }
+  .badge { font-size: 12px; padding: 2px 10px; border-radius: 999px; background: var(--soft); white-space: nowrap; }
+  .badge.nueva { background: var(--brand); color: var(--on-brand); }
+  .meta { font-size: 14px; color: var(--muted); }
+  .fila { display: grid; gap: 10px; grid-template-columns: 1fr; }
+  @media (min-width: 560px) { .fila { grid-template-columns: 1fr 1fr; } }
+  .acciones { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .vacio { text-align: center; color: var(--muted); padding: 40px 0; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="wrap">
+    <h1>Citas · Dra. Andrea Pérez</h1>
+    <span>
+      <button id="instalar" type="button" hidden>Instalar app</button>
+      <button id="salir" type="button" hidden>Salir</button>
+    </span>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <section id="v-config" class="panelbox" hidden>
+    <h2>Falta conectar la base de datos</h2>
+    <p>Abre <code>config.js</code> y escribe el <code>SUPABASE_URL</code> y la <code>SUPABASE_ANON_KEY</code> del proyecto de Supabase de la doctora. Los pasos están en <code>README.md</code>.</p>
+  </section>
+
+  <section id="v-login" class="panelbox" hidden>
+    <h2>Entrar</h2>
+    <p class="note">Escribe tu correo y te enviamos un enlace para entrar. No hay contraseña.</p>
+    <form id="f-login" style="display:grid;gap:12px;max-width:420px">
+      <label>Correo
+        <input id="correo" type="email" required autocomplete="email" inputmode="email">
+      </label>
+      <button class="btn" type="submit">Enviarme el enlace</button>
+    </form>
+    <p class="msg" id="msg-login" role="status"></p>
+  </section>
+
+  <section id="v-sinpermiso" class="panelbox" hidden>
+    <h2>Esta cuenta no tiene permiso</h2>
+    <p>Entraste con una cuenta que no está autorizada para ver las citas. Sal e intenta con el correo de la doctora.</p>
+  </section>
+
+  <section id="v-panel" hidden>
+    <div class="tabs" id="tabs" role="group" aria-label="Filtro de citas"></div>
+    <p class="note" id="resumen" role="status"></p>
+    <div class="lista" id="lista"></div>
+  </section>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0/dist/umd/supabase.js" integrity="sha384-TcHRA3zBbn+Lexh5n+Oil4guNPOS3rjNDpGRAN46u/s/mB2IZ50ceC6TYDU2yvgK" crossorigin="anonymous"></script>
+<script src="config.js"></script>
+<script>
+  const cfg = window.APP_CONFIG || {};
+  const $ = (id) => document.getElementById(id);
+  const ESTADOS = ["nueva", "contactada", "agendada", "atendida", "cancelada"];
+  const FILTROS = [
+    ["porAtender", "Por atender", ["nueva", "contactada"]],
+    ["agendadas", "Agendadas", ["agendada"]],
+    ["historial", "Historial", ["atendida", "cancelada"]],
+    ["todas", "Todas", ESTADOS]
+  ];
+  const CONSULTORIO = "la Dra. Andrea Pérez";
+
+  let db = null;
+  let filtroActual = "porAtender";
+  let solicitudes = [];
+  let panelAbierto = false;
+
+  function vista(nombre) {
+    ["v-config", "v-login", "v-sinpermiso", "v-panel"].forEach((id) => { $(id).hidden = id !== nombre; });
+    $("salir").hidden = nombre === "v-config" || nombre === "v-login";
+  }
+
+  // --- Sesión ---------------------------------------------------------------
+  async function iniciar() {
+    if (!cfg.SUPABASE_URL || !cfg.SUPABASE_ANON_KEY) { vista("v-config"); return; }
+    db = window.supabase.createClient(cfg.SUPABASE_URL, cfg.SUPABASE_ANON_KEY);
+    const { data } = await db.auth.getSession();
+    if (data.session) await abrirPanel(); else vista("v-login");
+    db.auth.onAuthStateChange((evento, sesion) => {
+      if (evento === "SIGNED_OUT") { panelAbierto = false; vista("v-login"); }
+      else if (evento === "SIGNED_IN" && sesion && !panelAbierto) abrirPanel();
+    });
+  }
+
+  $("f-login").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const msg = $("msg-login");
+    msg.textContent = "Enviando…";
+    const { error } = await db.auth.signInWithOtp({
+      email: $("correo").value.trim(),
+      options: { emailRedirectTo: location.origin + location.pathname, shouldCreateUser: false }
+    });
+    msg.textContent = error
+      ? "No pude enviar el enlace. Revisa el correo e inténtalo de nuevo."
+      : "Listo. Revisa tu correo y abre el enlace desde este mismo dispositivo.";
+  });
+
+  $("salir").addEventListener("click", async () => { await db.auth.signOut(); });
+
+  async function abrirPanel() {
+    panelAbierto = true;
+    const { data, error } = await db.from("admins").select("user_id").limit(1);
+    if (error || !data || !data.length) { vista("v-sinpermiso"); return; }
+    vista("v-panel");
+    pintarTabs();
+    await cargar();
+  }
+
+  // --- Datos ----------------------------------------------------------------
+  async function cargar() {
+    $("resumen").textContent = "Cargando…";
+    const { data, error } = await db.from("solicitudes").select("*").order("creada", { ascending: false }).limit(300);
+    if (error) { $("resumen").textContent = "No se pudieron cargar las citas. Revisa tu conexión."; return; }
+    solicitudes = data;
+    pintar();
+  }
+
+  function pintarTabs() {
+    const cont = $("tabs");
+    cont.replaceChildren();
+    FILTROS.forEach(([clave, etiqueta]) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.textContent = etiqueta;
+      b.setAttribute("aria-pressed", String(clave === filtroActual));
+      b.addEventListener("click", () => { filtroActual = clave; pintarTabs(); pintar(); });
+      cont.appendChild(b);
+    });
+    const r = document.createElement("button");
+    r.type = "button";
+    r.textContent = "Actualizar";
+    r.addEventListener("click", cargar);
+    cont.appendChild(r);
+  }
+
+  function telefonoWa(tel) {
+    const d = String(tel).replace(/\D/g, "");
+    return d.length === 10 ? "52" + d : d;
+  }
+
+  function aLocal(iso) {
+    if (!iso) return "";
+    const d = new Date(iso);
+    d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+    return d.toISOString().slice(0, 16);
+  }
+
+  function mensajeWa(s, fechaCita) {
+    const cuando = fechaCita
+      ? new Date(fechaCita).toLocaleString("es-MX", { dateStyle: "full", timeStyle: "short" })
+      : "";
+    if (s.estado === "agendada" && cuando) {
+      return "Hola " + s.nombre + ", te escribimos del consultorio de " + CONSULTORIO + " para recordarte tu cita de " + s.servicio.toLowerCase() + " el " + cuando + ". ¿La confirmas?";
+    }
+    return "Hola " + s.nombre + ", te escribimos del consultorio de " + CONSULTORIO + " sobre tu solicitud de cita de " + s.servicio.toLowerCase() + ". ¿Qué día y hora te acomodan?";
+  }
+
+  function pintar() {
+    const estados = FILTROS.find((f) => f[0] === filtroActual)[2];
+    const lista = solicitudes.filter((s) => estados.includes(s.estado));
+    const nuevas = solicitudes.filter((s) => s.estado === "nueva").length;
+    $("resumen").textContent = lista.length + " en esta vista · " + nuevas + " nuevas sin atender";
+    const cont = $("lista");
+    cont.replaceChildren();
+    if (!lista.length) {
+      const v = document.createElement("p");
+      v.className = "vacio";
+      v.textContent = "No hay solicitudes aquí.";
+      cont.appendChild(v);
+      return;
+    }
+    lista.forEach((s) => cont.appendChild(tarjeta(s)));
+  }
+
+  function tarjeta(s) {
+    const card = document.createElement("article");
+    card.className = "item";
+
+    const head = document.createElement("header");
+    const titulo = document.createElement("div");
+    const h = document.createElement("h3");
+    h.textContent = s.nombre;
+    const meta = document.createElement("div");
+    meta.className = "meta";
+    const creada = new Date(s.creada).toLocaleString("es-MX", { dateStyle: "medium", timeStyle: "short" });
+    meta.textContent = s.servicio + " · " + s.telefono + " · " + creada +
+      (s.fecha_preferida ? " · prefiere " + s.fecha_preferida : "");
+    titulo.append(h, meta);
+    const badge = document.createElement("span");
+    badge.className = "badge " + s.estado;
+    badge.textContent = s.estado;
+    head.append(titulo, badge);
+
+    const fila = document.createElement("div");
+    fila.className = "fila";
+    const lEstado = document.createElement("label");
+    lEstado.textContent = "Estado";
+    const sel = document.createElement("select");
+    ESTADOS.forEach((e) => {
+      const o = document.createElement("option");
+      o.value = e; o.textContent = e; o.selected = e === s.estado;
+      sel.appendChild(o);
+    });
+    lEstado.appendChild(sel);
+    const lFecha = document.createElement("label");
+    lFecha.textContent = "Fecha y hora de la cita";
+    const fecha = document.createElement("input");
+    fecha.type = "datetime-local";
+    fecha.value = aLocal(s.fecha_cita);
+    lFecha.appendChild(fecha);
+    fila.append(lEstado, lFecha);
+
+    const lNota = document.createElement("label");
+    lNota.textContent = "Nota (sin datos clínicos)";
+    const nota = document.createElement("textarea");
+    nota.rows = 2; nota.maxLength = 500;
+    nota.value = s.nota || "";
+    nota.placeholder = "Ej. prefiere tardes. No escribas diagnósticos.";
+    lNota.appendChild(nota);
+
+    const acc = document.createElement("div");
+    acc.className = "acciones";
+    const guardar = document.createElement("button");
+    guardar.type = "button";
+    guardar.className = "btn sm";
+    guardar.textContent = "Guardar";
+    const estadoMsg = document.createElement("span");
+    estadoMsg.className = "note";
+    estadoMsg.setAttribute("role", "status");
+    const wa = document.createElement("a");
+    wa.className = "btn ghost sm";
+    wa.target = "_blank";
+    wa.rel = "noopener";
+    wa.textContent = "WhatsApp";
+    const actualizarWa = () => {
+      const f = fecha.value ? new Date(fecha.value).toISOString() : null;
+      wa.href = "https://wa.me/" + telefonoWa(s.telefono) + "?text=" +
+        encodeURIComponent(mensajeWa({ ...s, estado: sel.value }, f));
+    };
+    sel.addEventListener("change", actualizarWa);
+    fecha.addEventListener("change", actualizarWa);
+    actualizarWa();
+
+    guardar.addEventListener("click", async () => {
+      estadoMsg.textContent = "Guardando…";
+      const cambios = {
+        estado: sel.value,
+        fecha_cita: fecha.value ? new Date(fecha.value).toISOString() : null,
+        nota: nota.value.trim() || null
+      };
+      const { error } = await db.from("solicitudes").update(cambios).eq("id", s.id);
+      if (error) { estadoMsg.textContent = "No se pudo guardar."; return; }
+      Object.assign(s, cambios);
+      badge.className = "badge " + s.estado;
+      badge.textContent = s.estado;
+      estadoMsg.textContent = "Guardado";
+      $("resumen").textContent = solicitudes.filter((x) => x.estado === "nueva").length + " nuevas sin atender";
+    });
+
+    acc.append(guardar, wa, estadoMsg);
+    card.append(head, fila, lNota, acc);
+    return card;
+  }
+
+  // --- App instalable ------------------------------------------------------
+  let promptInstalar = null;
+  window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    promptInstalar = e;
+    $("instalar").hidden = false;
+  });
+  $("instalar").addEventListener("click", async () => {
+    if (!promptInstalar) return;
+    promptInstalar.prompt();
+    await promptInstalar.userChoice;
+    promptInstalar = null;
+    $("instalar").hidden = true;
+  });
+  if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js");
+
+  iniciar();
+</script>
+</body>
+</html>
